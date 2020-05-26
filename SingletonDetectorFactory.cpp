@@ -2,7 +2,7 @@
 
 void Detector::Foo() const
 {
-    DetectorActions* detector = this->FactoryMethod();
+    DetectorActions* detector = FactoryMethod();
     detector->Action();
     delete detector;
 }
@@ -14,7 +14,21 @@ SingletonDetector* SingletonDetector::GetInstance()
     return instance;
 }
 
+Detector* SingletonDetector::GetObject(Detector* detector)
+{
+    if (!object)
+        object = detector;
+    return object;
+}
+
+SingletonDetector::~SingletonDetector()
+{
+    delete object;
+    delete instance;
+};
+
 SingletonDetector* SingletonDetector::instance = nullptr;
+Detector* SingletonDetector::object = nullptr;
 
 void FakeDetector::Action() const
 {

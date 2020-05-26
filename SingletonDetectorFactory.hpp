@@ -21,13 +21,15 @@ class Detector {
 class SingletonDetector
 {
     private:
+        static Detector* object;
         static SingletonDetector* instance;
         SingletonDetector& operator=(SingletonDetector&);
         SingletonDetector(const SingletonDetector&);
         SingletonDetector(){};
     public:
-        Detector* object;
         static SingletonDetector* GetInstance();
+        Detector* GetObject(Detector* detector);
+        ~SingletonDetector();
 };
 
 

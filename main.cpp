@@ -3,12 +3,9 @@
 int main()
 {
     SingletonDetector* singleton = SingletonDetector::GetInstance();
-    singleton->object = new FakeDetectorCreator();
-    singleton->object -> Foo();
-    singleton->object = new MegaDetectorCreator();
-    singleton->object -> Foo();
+    singleton->GetObject(new FakeDetectorCreator()) -> Foo();
+    singleton->GetObject(new MegaDetectorCreator()) -> Foo();
 
-    delete singleton->object;
     delete singleton;
     return 0;
 }
